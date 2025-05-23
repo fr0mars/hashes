@@ -40,12 +40,17 @@ pub struct Md5Core {
 /// MD5 hasher state.
 pub type Md5 = CoreWrapper<Md5Core>;
 
+/// Extension trait to expose internal state (for educational or forensic purposes).
+pub trait Md5Ext {
+    fn get_state(&self) -> [u32; 4];
+}
 
-impl Md5 {
-    pub fn get_state(&self) -> [u32; 4] {
-        self.core().state
+impl Md5Ext for Md5 {
+    fn get_state(&self) -> [u32; 4] {
+        self.inner().getstate()
     }
 }
+
 const STATE_LEN: usize = 4;
 
 impl HashMarker for Md5Core {}
