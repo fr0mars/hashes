@@ -47,9 +47,10 @@ pub trait Md5Ext {
 
 impl Md5Ext for Md5 {
     fn get_state(&self) -> [u32; 4] {
-        self.inner().getstate()
+        self.0.getstate()
     }
 }
+
 
 const STATE_LEN: usize = 4;
 
