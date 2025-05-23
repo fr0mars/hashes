@@ -40,6 +40,12 @@ pub struct Md5Core {
 /// MD5 hasher state.
 pub type Md5 = CoreWrapper<Md5Core>;
 
+
+impl Md5 {
+    pub fn get_state(&self) -> [u32; 4] {
+        self.core().state
+    }
+}
 const STATE_LEN: usize = 4;
 
 impl HashMarker for Md5Core {}
@@ -88,6 +94,12 @@ impl Default for Md5Core {
             block_len: 0,
             state: consts::STATE_INIT,
         }
+    }
+}
+
+impl Md5Core {
+    pub fn getstate(&self) -> [u32; 4] {
+        self.state
     }
 }
 
