@@ -47,7 +47,7 @@ pub trait Md5Ext {
 
 impl Md5Ext for Md5 {
     fn get_state(&self) -> [u32; 4] {
-        self.0.getstate()
+        self.state
     }
 }
 
